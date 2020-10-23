@@ -1,0 +1,123 @@
+{% extends 'manager/managerbase.html' %}
+
+{% block head %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registerstyle.css' %}">
+<style>
+    .tagedit{
+        color: #1d2124; 
+        background-color: rgb(223 240 251); 
+        padding-top: 1%; 
+        margin-top:1%; 
+        margin-left:1%; 
+        margin-right:1%;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+<form action="{% url 'create' %}" method="post">
+    {% csrf_token %}
+<header class="container text-white text-center" style="padding-top: 80px; padding-bottom: 100px;">
+
+
+    <div class="container text-center">
+        <h2 style="color:#000000; padding-bottom:4%">CREATE POST</h2>
+          
+    </div>
+
+    <div class="row" style="padding-top: 2%;
+                            padding-bottom: 2%;
+                            background-color: #f5f7df; ">
+        <div class="col-2" style="padding-top:2%;">
+            <h4 style="color: darkred;">TASK:</h4>
+        </div>
+    
+        <div class="col-10">
+                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" name= "taskname" rows="3" placeholder="Enter the New post here..."></textarea>
+        </div>
+    </div>
+
+
+
+    <br>
+    <div class="row" style="padding-top: 2%;
+                            padding-bottom: 2%;
+                            background-color: #f5f7df; ">
+            <div class="col-2" style="padding-top:1%;">
+                <h4 style="color: darkred;">Status:</h4>
+            </div>
+            
+            <div class="col-8" style="padding-top:1%;">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-info active">
+                        <input type="radio" name="statusoptions" id="option1" value = "Initiated" autocomplete="off" checked> Initiated
+                    </label>
+                    <label class="btn btn-outline-secondary">
+                        <input type="radio" name="statusoptions" id="option2" value="In_Progress" autocomplete="off"> In_Progress
+                    </label>
+                    <label class="btn btn-outline-success">
+                        <input type="radio" name="statusoptions" id="option3" value="Completed" autocomplete="off"> Completed
+                    </label>
+                    <label class="btn btn-outline-danger">
+                            <input type="radio" name="statusoptions" id="option4" value="Delayed" autocomplete="off"> Delayed
+                    </label>
+                </div>
+            </div>
+    </div>
+
+
+
+
+    <!---------------------------------------------------------------------------------------------------------------------- -->
+      <table class="table" style="margin-top:3%">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">SL.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email-ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">State</th>
+          </tr>
+        </thead>
+        <tbody style="background: #f5f7df;">
+
+            {% for chunk in users_array %}
+
+            <tr>
+                <th scope="row">{{chunk.count}}</th>
+                <td>{{chunk.name}}</td>
+                <td>{{chunk.email}}</td>
+                <td>{{chunk.username}}</td>
+                <td>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-success active">
+                            <input type="radio" name="{{chunk.username}}" id="{{chunk.count}}" value = "Enable" autocomplete="off" checked> Enable
+                        </label>
+                    
+                        <label class="btn btn-outline-danger">
+                            <input type="radio" name="{{chunk.username}}" id="{{chunk.count}}" value = "Disable" autocomplete="off"> Disable
+                        </label>
+                    </div>
+                </td> 
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </tbody>
+      </table>
+          <button type="submit" style="margin-top: 3%;" class="btn btn-primary btn-lg ">Submit Data</button>
+    </div>
+</header>
+  
+</form>
+
+
+{% endblock %}

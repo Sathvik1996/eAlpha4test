@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block head %}
+{% load static %}
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<header id ="headerid" class=" text-white" style="padding-top: 80px; padding-bottom: 100px;">
+    <div class="container text-center">
+      
+      <div class="signup-form">
+        <form action="{% url 'register' %}"  id="homePage1" method="post" style="width: 370px;">
+            {% csrf_token %}
+        <h2>Register</h2>
+            <div class="form-group">
+          <div class="row">
+            <div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
+          </div>        	
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" placeholder="Email" required="required">
+            </div>
+          <div class="form-group">
+              <input type="username" class="form-control" name="username" placeholder="Username" required="required">
+          </div>
+        <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required" 
+                      id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  >
+            </div>
+      
+        <div class="form-group">
+                <button class="btn btn-success btn-lg btn-block">Register Now</button>
+                <div  style="color: black;  padding-top: 5%;  padding-bottom: 3%;"  class="text-center">Already have an account? <a href="{% url 'login' %}" style="    color: blue">Sign in</a></div>
+            </div>
+        </form>
+      
+    </div>
+  
+  
+    </div>
+</header>
+
+
+
+
+
+
+<script>
+  
+  function myFunction1() {
+    // Validate lowercase letters
+    var myInput = document.getElementById("psw");
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {  
+      lower = true
+    } else {
+      lower = false
+    }
+    
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {  
+      upper = true
+    } else {
+      upper = false
+    }
+  
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {  
+      numbers = true
+    } else {
+      numbers = false
+    }
+    
+    // Validate length
+    if(myInput.value.length >= 8) {
+      length_value = true
+    } else {
+      length_value = false
+    }
+  }
+
+  if (lower==true && upper == true && numbers == true && length_value == true){
+    document.getElementById('homePage1').submit();
+  }else{
+    alert("Please Match the requested format <br> Must contain atleast one number and one uppercase and one lower case letter and atleast 8 or more characters");
+  }
+  
+
+
+</script>
+
+
+
+
+
+
+
+{% endblock %}

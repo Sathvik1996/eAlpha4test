@@ -1,0 +1,111 @@
+{% extends 'user/userbase.html' %}
+
+{% block head %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registerstyle.css' %}">
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
+
+<style>
+    .tagedit{
+        color: #1d2124; 
+        background-color: rgb(223 240 251); 
+        padding-top: 1%; 
+        margin-top:1%; 
+        margin-left:1%; 
+        margin-right:1%;
+    }
+</style>
+
+<style>
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<input type="hidden" id="myVar" name="variable" value="{{ user_name_unique }}">
+<div>
+    <div class="jumbotron" id = "headerid" style="padding-top:10% ; color:black">
+      <h2 class="display-4" id = "username_ajax" style="color :#8f0a0a;">  </h2>
+      <p class="lead">This is a System Test Conducted by the eAlpha4Tech as part of the Interview.</p>
+      <hr class="my-4">
+      <p>This is the second level of the Interview</p>
+</div>
+<div id="spinnercircle" style="margin-left:45%" class="loader"></div>
+<h2 style="color:black; padding-bottom:4% ; text-align: center;"> -- TASKS --</h2>
+
+
+
+
+<div id="unique_class_for_data">
+
+
+
+</div>
+
+    {% if pop_up == "success" %}
+    <!-- Modal -->
+    <div class="modal in" id="myModal" style="display: block;" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title" style="color: green;">Success</h4>
+          </div>
+          <div class="modal-body" style="color: black;">
+            <p> Data submitted Successfully </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="displaynone()" data-dismiss="modal">Close</button>
+          </div>
+          <script>
+            function displaynone() {
+              document.getElementById("myModal").style.display = "none"; 
+              document.getElementById("headerid").style.opacity = "100%";
+            }
+            </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("headerid").style.opacity = "20%"; 
+  </script>
+    {% endif %}
+
+    <script type="text/javascript" src="{% static 'js/user_load.js' %}"></script>
+
+
+{% endblock %}
+
+
+

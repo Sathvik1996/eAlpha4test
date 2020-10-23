@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registerstyle.css' %}">
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- Navigation -->
+
+
+
+
+<header class=" text-white" id ="headerid" style="padding-top: 90px; padding-bottom: 90px;">
+
+
+  <div class="">
+    
+    
+    <div class="signup-form" >
+      <form class="" action="{% url 'login' %}" method="post" style="width: 370px;">
+        {% csrf_token %}
+      <h2>Login</h2>
+        <div class="form-group">
+            <input type="username" class="form-control" name="username" placeholder="Email/Username" required="required">
+        </div>
+      <div class="form-group">
+              <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+          </div>
+      <div class="form-group">
+              <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+          </div>
+          <div  style="color: black;   padding-top: 3%;  padding-bottom: 3%;"  class=""><a href="{% url 'register' %}" style="color: cornflowerblue;">Create Account</a></div>
+      </form>
+
+      
+
+  </div>
+</header>
+
+{% if pop_up == "error" %}
+    <!-- Modal -->
+    <div class="modal in" id="myModal" style="display: block;" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title" style="color: Red;">Error</h4>
+          </div>
+          <div class="modal-body" style="color: black;">
+            <p>Username or password Mismatch </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" onclick="displaynone()" data-dismiss="modal">Close</button>
+          </div>
+          <script>
+            function displaynone() {
+              document.getElementById("myModal").style.display = "none"; 
+              document.getElementById("headerid").style.opacity = "100%";
+              document.getElementById("headerid").style.background= "none";
+            }
+            </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("headerid").style.opacity = "10%"; 
+    document.getElementById("headerid").style.background= "black";
+  </script>
+    {% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,10 +1,11 @@
-# eAlpha4test
+# README #
+
 This Project is developed for the EAlpha4Tech company under the Interview Test.
 
 ### What is this repository for? ###
 
 * This is a TaskReview system Based on Lead and Employee system
-* Developed using python, Django, RestAPi, Ajax, & MongoDB
+* Developed using python , Django, MongoDB, Ajax, RestAPI
 * 
 
 ### How do I get set up? ###

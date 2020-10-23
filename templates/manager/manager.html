@@ -1,0 +1,112 @@
+{% extends 'manager/managerbase.html' %}
+
+{% block head %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registerstyle.css' %}">
+<style>
+    .tagedit{
+        color: #1d2124; 
+        background-color: rgb(223 240 251); 
+        padding-top: 1%; 
+        margin-top:1%; 
+        margin-left:1%; 
+        margin-right:1%;
+    }
+</style>
+
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+
+
+<header class=" text-white" style="padding-top: 156px; padding-bottom: 100px;">
+    <div class="container text-center">
+      <h2 style="color:black; padding-bottom:4%">ADMIN DASHBOARD</h2>
+
+
+      {% for chunk in post_data_db_retrived %}
+      <form action="{% url 'edit' %}"  method="post">
+        {% csrf_token %}
+      <div class="card" style="margin-top: 2%;">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm">
+                    <h4 style="color: darkred;"></h4>
+                </div>
+                <div class="col-sm">
+                    <h4 style="color: darkred;">TASK</h4>
+                </div>
+                
+                <div class="col-sm">
+                    <input style="display: none;" type="radio" name="statusoptions" id="option1" value = "{{chunk.task}}" autocomplete="off" checked> Initiated
+                    <button type='submit' class="btn btn-primary" style="float: right;">EDIT POST</button>
+                        
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <h5 class="card-text" style="font-weight: 700; padding-top:1%; padding-bottom:3%"
+          >{{chunk.task}}
+        </h5>
+
+        <div class="">
+            <div class="dists overflow-auto card-header" style="overflow-y: auto">
+                <span class="badge">
+                       <p style="font-size: large; color: darkred;">Users : </p>
+                </span>
+
+                {% for user in chunk.userdata %}
+                        <span class="badge badge-success green_block tagedit">
+                                    <p style="font-size: large;">{{user}}</p>
+                        </span>
+                {% endfor %}
+                    
+                </a>
+            </div>
+        </div>
+        {% if chunk.taskstatus == 'Initiated' %} 
+        <div class="card-header" style="background-color: #578cee;">
+            <h4 style="font-weight: 750;">{{chunk.taskstatus}}</h4>
+        </div>
+        {% endif %}
+        {% if chunk.taskstatus == 'In_Progress' %}
+        <div class="card-header" style="background-color: #cdca1d;">
+            <h4 style="font-weight: 750;">{{chunk.taskstatus}}</h4>
+        </div>
+        {% endif %}
+        {% if chunk.taskstatus == 'Completed' %}
+        <div class="card-header" style="background-color: #42c542;">
+            <h4 style="font-weight: 750;">{{chunk.taskstatus}}</h4>
+        </div>
+        {% endif %}
+        {% if chunk.taskstatus == 'Delayed' %} 
+        <div class="card-header" style="background-color: #f06572;">
+            <h4 style="font-weight: 750;">{{chunk.taskstatus}}</h4>
+        </div>
+        {% endif %}
+      </div>
+    </form>
+      {% endfor %}
+
+          
+  
+  
+  
+    </div>
+  </header>
+  
+  
+  
+  
+
+
+
+{% endblock %}
